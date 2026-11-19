@@ -3,12 +3,58 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JSPEOPLE</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f0f2f5;color:#222}
+header{background:#1877f2;color:white;padding:18px;text-align:center}
+header h1{margin:0}
+.container{max-width:600px;margin:20px auto;padding:12px}
+.card{background:white;padding:18px;border-radius:12px;margin-bottom:15px}
+input,textarea{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px}
+button{background:#1877f2;color:white;border:0;padding:11px 18px;border-radius:8px;cursor:pointer}
+.post{border-top:1px solid #eee;padding-top:12px;margin-top:12px}
+</style>
 </head>
 <body>
-<h1>JSPEOPLE ❤️</h1>
-<h2>স্বাগতম!</h2>
+<header>
+<h1>JSPEOPLE</h1>
 <p>People Connect, People Share</p>
+</header>
+<div class="container">
+<div class="card">
+<h2>স্বাগতম JSPEOPLE-এ!</h2>
+<p>বন্ধুদের সঙ্গে যুক্ত হোন, মনের কথা শেয়ার করুন।</p>
+</div>
+<div class="card">
+<h3>আপনার পোস্ট লিখুন</h3>
+<textarea id="postText" placeholder="আপনি কী ভাবছেন?"></textarea>
+<button onclick="addPost()">পোস্ট করুন</button>
+</div>
+<div class="card">
+<h3>সবার পোস্ট</h3>
+<div id="posts"></div>
+</div>
+</div>
+<script>
+function addPost(){
+let input=document.getElementById("postText");
+let text=input.value.trim();
+if(!text){alert("আগে কিছু লিখুন");return;}
+let post=document.createElement("div");
+post.className="post";
+let content=document.createElement("p");
+content.textContent=text;
+let like=document.createElement("button");
+like.textContent="❤️ লাইক 0";
+let count=0;
+like.onclick=function(){count++;like.textContent="❤️ লাইক "+count;};
+post.appendChild(content);
+post.appendChild(like);
+document.getElementById("posts").prepend(post);
+input.value="";
+}
+</script>
 </body>
 </html>
